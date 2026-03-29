@@ -1,9 +1,10 @@
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 
 function App() {
   return (
     <div>
-      <h1>My Portfolio</h1>
+      <Navbar />
       <Home />
     </div>
   );

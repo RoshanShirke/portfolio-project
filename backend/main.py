@@ -1,18 +1,25 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from pymongo import MongoClient
 
 app = FastAPI()
 
+# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allow all for now
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Define data structure
+# MongoDB connection
+client = MongoClient("mongodb://localhost:27017/")
+db = client["portfolio_db"]
+collection = db["contacts"]
+
+# Data model
 class Contact(BaseModel):
     name: str
     email: str
@@ -22,8 +29,7 @@ class Contact(BaseModel):
 def home():
     return {"message": "Backend is running 🚀"}
 
-# POST API
 @app.post("/contact")
 def submit_contact(data: Contact):
-    print(data)  # for now, just print in terminal
-    return {"message": "Message received successfully"}
+    collection.insert_one(data.dict())   # 🔥 SAVE DATA
+    return {"message": "Message saved successfully"}

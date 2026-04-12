@@ -33,3 +33,8 @@ def home():
 def submit_contact(data: Contact):
     collection.insert_one(data.dict())   # 🔥 SAVE DATA
     return {"message": "Message saved successfully"}
+
+@app.get("/messages")
+def get_messages():
+    messages = list(collection.find({}, {"_id": 0}))
+    return messages

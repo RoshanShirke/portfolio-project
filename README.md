@@ -1,101 +1,166 @@
 # 🚀 Full Stack Portfolio (React + FastAPI + MongoDB)
 
-A modern full-stack portfolio application built using **React (Frontend)** and **FastAPI (Backend)** with **MongoDB integration**.  
-
-This project showcases my skills in **full-stack development, API integration, and UI design**.
+A modern **Full Stack Portfolio Website** built using **React (Frontend)** and **FastAPI (Backend)** with **MongoDB Atlas** as the database.
+This project showcases my skills, projects, and allows users to send messages via a contact form.
 
 ---
 
-## 🌟 Features
+## 🌐 Live Demo
 
-- 🧑‍💻 Modern responsive portfolio UI
-- 📄 Sections: Home, About, Projects, Contact
-- 📬 Contact form with backend integration
-- ⚡ FastAPI REST API
-- 🗄️ MongoDB database integration
-- 🔄 Real-time form submission
-- 🎨 Clean and professional UI design
+* 🔗 Frontend: https://portfolio-project-swart-five.vercel.app
+* 🔗 Backend API: https://portfolio-project-qgov.onrender.com
+* 📡 API Docs: https://portfolio-project-qgov.onrender.com/docs
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- React.js
-- Vite
-- CSS
+
+* React.js (Vite)
+* CSS (Custom Styling)
+* Framer Motion (Animations)
 
 ### Backend
-- FastAPI
-- Uvicorn
+
+* FastAPI (Python)
+* Uvicorn (ASGI Server)
 
 ### Database
-- MongoDB
+
+* MongoDB Atlas (Cloud Database)
+
+### Deployment
+
+* Vercel (Frontend)
+* Render (Backend)
+
+---
+
+## ✨ Features
+
+* 🎨 Modern UI with animations
+* 📱 Fully responsive design
+* 📩 Contact form with backend integration
+* 🧾 Admin dashboard to view messages
+* ⚡ Fast API performance
+* 🌐 Fully deployed full-stack app
 
 ---
 
 ## 📂 Project Structure
+
+```
 portfolio-project/
 │
-├── frontend/ # React frontend
-├── backend/ # FastAPI backend
+├── frontend/          # React App
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   └── App.jsx
+│
+├── backend/           # FastAPI App
+│   ├── main.py
+│   └── requirements.txt
+│
 └── README.md
+```
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Setup Instructions (Local Development)
 
-### 1️⃣ Clone the repository
+### 1️⃣ Clone Repository
 
-```bash
+```
 git clone https://github.com/RoshanShirke/portfolio-project.git
 cd portfolio-project
+```
 
-2️⃣ Run Frontend
-cd frontend
-npm install
-npm run dev
+---
 
-👉 Runs on: http://localhost:5173
+### 2️⃣ Setup Backend
 
-3️⃣ Run Backend
+```
 cd backend
 python -m venv venv
-venv\Scripts\activate
-pip install fastapi uvicorn pymongo
+venv\Scripts\activate   # Windows
+pip install -r requirements.txt
+```
+
+### ▶ Run Backend
+
+```
 python -m uvicorn main:app --reload
+```
 
 👉 Runs on: http://127.0.0.1:8000
 
-4️⃣ Run MongoDB
-mongod
+---
 
-OR (if installed as service):
+### 3️⃣ Setup Frontend
 
-net start MongoDB
+```
+cd frontend
+npm install
+npm run dev
+```
 
-📬 API Endpoints
-Method	Endpoint	Description
-GET	/	Check server status
-POST	/contact	Submit contact form
+👉 Runs on: http://localhost:5173
 
-🧠 What I Learned
-Full-stack architecture (Frontend ↔ Backend)
-API development using FastAPI
-MongoDB integration
-React component-based design
-Debugging real-world issues
-Git & GitHub workflow
-🔥 Future Enhancements
-🤖 AI chatbot integration
-📊 Admin dashboard for messages
-🌐 Deployment (Vercel + Render)
-🔐 Authentication system
-📈 Analytics tracking
-👨‍💻 Author
+---
 
-Roshan Shirke
+## 🔐 Environment Variables
 
-📧 Email: roshanshirke6735@gmail.com
-💼 LinkedIn: https://www.linkedin.com/in/roshan-shirke-527089306
-💻 GitHub: https://github.com/RoshanShirke
+Create environment variable in backend:
+
+```
+MONGO_URI=your_mongodb_connection_string
+```
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint    | Description    |
+| ------ | ----------- | -------------- |
+| GET    | `/`         | Check server   |
+| POST   | `/contact`  | Submit message |
+| GET    | `/messages` | Fetch messages |
+
+---
+
+## 🧠 Learnings
+
+* Full-stack integration (React + FastAPI)
+* REST API development
+* MongoDB Atlas cloud usage
+* Deployment using Vercel & Render
+* Handling CORS & production issues
+
+---
+
+## 📌 Future Improvements
+
+* 🔐 Admin authentication
+* 📊 Analytics dashboard
+* 🤖 AI chatbot integration
+* 🌍 Custom domain setup
+
+---
+
+## 👨‍💻 Author
+
+**Roshan Shirke**
+
+* 📧 [roshanshirke6735@gmail.com](mailto:roshanshirke6735@gmail.com)
+* 🔗 LinkedIn: https://www.linkedin.com/in/roshan-shirke-527089306
+* 💻 GitHub: https://github.com/RoshanShirke
+
+---
+
+## ⭐ If you like this project
+
+Give it a ⭐ on GitHub and share it!
+
+---

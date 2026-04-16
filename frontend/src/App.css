@@ -231,3 +231,73 @@ section {
   transform: scale(1.02);
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
 }
+
+.project-buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 768px) {
+
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  /* Hero */
+  .hero {
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content h2 {
+    font-size: 1.2rem;
+  }
+
+  /* Sections */
+  section {
+    padding: 40px 15px;
+  }
+
+  /* Project Card */
+  .project-card {
+    margin: 20px 10px;
+    padding: 20px;
+  }
+
+  /* Buttons */
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-buttons {
+    flex-direction: column;
+  }
+
+  /* Contact Form */
+  .contact-form {
+    width: 100%;
+  }
+
+  /* Admin Cards */
+  .message-card {
+    margin: 10px;
+  }
+}

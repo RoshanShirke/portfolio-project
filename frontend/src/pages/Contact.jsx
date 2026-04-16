@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -17,9 +18,9 @@ function Contact() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // 🚨 VERY IMPORTANT
+    e.preventDefault();
 
-    console.log("Submitting:", formData); // debug
+    console.log("Submitting:", formData);
 
     try {
       const res = await fetch("http://127.0.0.1:8000/contact", {
@@ -34,6 +35,14 @@ function Contact() {
       console.log("Response:", data);
 
       setResponseMsg(data.message);
+
+      // ✅ Reset form after submission
+      setFormData({
+        name: "",
+        email: "",
+        message: ""
+      });
+
     } catch (error) {
       console.error(error);
       setResponseMsg("Error sending message");
@@ -42,37 +51,49 @@ function Contact() {
 
   return (
     <section className="contact">
-      <h1>Contact Me</h1>
 
-      <form onSubmit={handleSubmit} className="contact-form">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          onChange={handleChange}
-          required
-        />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+      >
+        <h1>Contact Me</h1>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          onChange={handleChange}
-          required
-        />
+        <form onSubmit={handleSubmit} className="contact-form">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}              // ✅ controlled input
+            onChange={handleChange}
+            required
+          />
 
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          rows="5"
-          onChange={handleChange}
-          required
-        ></textarea>
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}             // ✅ controlled input
+            onChange={handleChange}
+            required
+          />
 
-        <button type="submit">Send Message</button>
-      </form>
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="5"
+            value={formData.message}           // ✅ controlled input
+            onChange={handleChange}
+            required
+          ></textarea>
 
-      {responseMsg && <p>{responseMsg}</p>}
+          <button type="submit">Send Message</button>
+        </form>
+
+        {responseMsg && <p>{responseMsg}</p>}
+      </motion.div>
+
     </section>
   );
 }

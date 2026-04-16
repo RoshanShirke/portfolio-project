@@ -5,7 +5,7 @@ function Admin() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/messages")
+    fetch("https://portfolio-project-qgov.onrender.com/messages")
       .then((res) => res.json())
       .then((data) => setMessages(data))
       .catch((err) => console.error(err));

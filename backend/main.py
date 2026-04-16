@@ -5,10 +5,11 @@ from pymongo import MongoClient
 
 app = FastAPI()
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://portfolio-project-swart-five.vercel.app"
+    ],  # ✅ your frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -301,3 +301,76 @@ section {
     margin: 10px;
   }
 }
+/* Seminar Section */
+.seminar {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.seminar h1 {
+  margin-bottom: 10px;
+}
+
+.seminar p {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  color: #cbd5f5;
+}
+
+.seminar-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.seminar-grid img {
+  width: 300px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.seminar-grid img:hover {
+  transform: scale(1.05);
+}
+/* 🔥 STATS SECTION */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px 20px;
+  background: #0f172a;
+}
+
+.stat-box {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 12px;
+  width: 200px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.stat-box:hover {
+  transform: scale(1.05);
+}
+
+.stat-box h1 {
+  color: #38bdf8;
+  font-size: 2rem;
+}
+
+/* 🔥 SLIDER */
+.slider {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.slider img {
+  width: 500px;
+  height: 350px;
+  object-fit: cover; /* 🔥 FIX for portrait + landscape */
+  border-radius: 12px;
+  transition: 0.5s;
+}

@@ -205,10 +205,17 @@ section {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
+  font-weight: 600;
 }
 
-.contact-form button:hover {
+.contact-form button:hover:not(:disabled) {
   background: #0ea5e9;
+}
+
+.contact-form button:disabled {
+  background: #64748b;
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 
 /* ===== ADMIN ===== */
@@ -300,6 +307,22 @@ section {
   .message-card {
     margin: 10px;
   }
+
+  /* 🔥 Slider Mobile */
+  .slider img {
+    width: 90%;
+    max-width: 100%;
+    height: 300px;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .stat-box {
+    width: 100%;
+  }
 }
 /* Seminar Section */
 .seminar {
@@ -365,12 +388,26 @@ section {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  align-items: center;
+}
+
+@keyframes imageZoomOut {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .slider img {
-  width: 500px;
-  height: 350px;
-  object-fit: cover; /* 🔥 FIX for portrait + landscape */
+  width: 80%;
+  max-width: 800px;
+  height: 450px;
+  object-fit: contain;
+  background: #0f172a;
   border-radius: 12px;
-  transition: 0.5s;
+  animation: imageZoomOut 0.8s ease-out forwards;
 }

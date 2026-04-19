@@ -5,6 +5,7 @@ from pymongo import MongoClient
 import os
 import smtplib
 from email.mime.text import MIMEText
+import threading
 
 app = FastAPI()
 
@@ -57,11 +58,13 @@ def send_email(data: Contact):
 @app.post("/contact")
 def submit_contact(data: Contact):
     try:
-        # Save to DB
+        # Save to DB immediately
         collection.insert_one(data.dict())
 
-        # Send Email
-        send_email(data)
+        # 🔥 Send email in background thread (non-blocking)
+        email_thread = threading.Thread(target=send_email, args=(data,))
+        email_thread.daemon = True
+        email_thread.start()
 
         return {"message": "Message sent successfully 🚀"}
     except Exception as e:

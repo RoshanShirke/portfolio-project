@@ -22,29 +22,40 @@ function Home() {
   const [count2, setCount2] = useState(0);
   const [count3, setCount3] = useState(0);
 
-  // 🔥 AUTO SLIDER
+  // 🔥 AUTO COUNTER ANIMATION
   useEffect(() => {
-  const animateCounter = (setter, target, duration = 2000) => {
-    let start = 0;
-    const increment = target / (duration / 16);
+    const animateCounter = (setter, target, duration = 2000) => {
+      let start = 0;
+      const increment = target / (duration / 16);
 
-    const update = () => {
-      start += increment;
-      if (start < target) {
-        setter(Math.floor(start));
-        requestAnimationFrame(update);
-      } else {
-        setter(target);
-      }
+      const update = () => {
+        start += increment;
+        if (start < target) {
+          setter(Math.floor(start));
+          requestAnimationFrame(update);
+        } else {
+          setter(target);
+        }
+      };
+
+      update();
     };
 
-    update();
-  };
+    animateCounter(setCount1, 10);    // Workshops
+    animateCounter(setCount2, 150);   // People
+    animateCounter(setCount3, 20);    // Sessions
+  }, []);
 
-  animateCounter(setCount1, 10);    // Workshops
-  animateCounter(setCount2, 150);   // People
-  animateCounter(setCount3, 20);    // Sessions
-}, []);
+  // 🔥 AUTO SLIDER - Change image every 4 seconds
+  useEffect(() => {
+    if (pause) return; // Stop if paused (on hover)
+
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [pause, images.length]);
 
   return (
     <>
@@ -114,7 +125,7 @@ function Home() {
           onMouseEnter={() => setPause(true)}
           onMouseLeave={() => setPause(false)}
         >
-          <img src={images[current]} alt="Seminar" />
+          <img key={current} src={images[current]} alt="Seminar" />
         </div>
       </section>
     </>

@@ -9,6 +9,7 @@ function Contact() {
   });
 
   const [responseMsg, setResponseMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -19,8 +20,7 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Submitting:", formData);
+    setIsLoading(true);
 
     try {
       const res = await fetch("https://portfolio-project-qgov.onrender.com/contact", {
@@ -32,9 +32,8 @@ function Contact() {
       });
 
       const data = await res.json();
-      console.log("Response:", data);
 
-      setResponseMsg(data.message);
+      setResponseMsg(data.message || "Message sent successfully 🚀");
 
       // ✅ Reset form after submission
       setFormData({
@@ -43,9 +42,15 @@ function Contact() {
         message: ""
       });
 
+      // ✅ Auto-clear message after 3 seconds
+      setTimeout(() => setResponseMsg(""), 3000);
+
     } catch (error) {
       console.error(error);
       setResponseMsg("Error sending message");
+      setTimeout(() => setResponseMsg(""), 3000);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -88,10 +93,27 @@ function Contact() {
             required
           ></textarea>
 
-          <button type="submit">Send Message</button>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Sending..." : "Send Message"}
+          </button>
         </form>
 
-        {responseMsg && <p>{responseMsg}</p>}
+        {responseMsg && (
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            style={{
+              marginTop: "15px",
+              padding: "10px 15px",
+              borderRadius: "8px",
+              backgroundColor: responseMsg.includes("Error") ? "#dc2626" : "#10b981",
+              color: "white"
+            }}
+          >
+            {responseMsg}
+          </motion.p>
+        )}
       </motion.div>
 
     </section>

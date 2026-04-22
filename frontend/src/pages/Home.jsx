@@ -196,6 +196,36 @@ function Home() {
           <img key={current} src={images[current]} alt="Seminar" />
         </div>
       </section>
+
+      {/* ===== FOOTER SECTION ===== */}
+      <footer className="footer-section">
+        <div className="footer-container">
+          <div className="footer-content">
+            <h2 className="footer-title">Let's Work Together</h2>
+            <p className="footer-description">
+              Have a project in mind? Let's collaborate and create something amazing!
+            </p>
+            
+            <div className="footer-links">
+              <a href="mailto:roshanshirke6735@gmail.com" className="footer-link">
+                📧 Email Me
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+                💼 LinkedIn
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+                🐙 GitHub
+              </a>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p className="footer-copyright">
+              © 2026 Roshan Shirke. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

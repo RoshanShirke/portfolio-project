@@ -201,27 +201,44 @@ function Home() {
       <footer className="footer-section">
         <div className="footer-container">
           <div className="footer-content">
-            <h2 className="footer-title">Let's Work Together</h2>
-            <p className="footer-description">
-              Have a project in mind? Let's collaborate and create something amazing!
-            </p>
-            
-            <div className="footer-links">
-              <a href="mailto:roshanshirke6735@gmail.com" className="footer-link">
-                📧 Email Me
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link">
-                💼 LinkedIn
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-link">
-                🐙 GitHub
-              </a>
+            <div>
+              <h2 className="footer-title">Let's Work Together</h2>
+              <p className="footer-description">
+                Have a project in mind? I'd love to hear from you. Let's collaborate and create something amazing together!
+              </p>
+              
+              <div className="footer-links">
+                <a href="mailto:roshanshirke6735@gmail.com" className="footer-link">
+                  📧 Email: roshanshirke6735@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/roshan-shirke" target="_blank" rel="noopener noreferrer" className="footer-link">
+                  💼 LinkedIn Profile
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+                  🐙 GitHub Projects
+                </a>
+              </div>
+            </div>
+
+            <div className="footer-quick-links">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/contact">Contact</a></li>
+              </ul>
             </div>
           </div>
+
+          <div className="footer-divider"></div>
 
           <div className="footer-bottom">
             <p className="footer-copyright">
               © 2026 Roshan Shirke. All rights reserved.
+            </p>
+            <p className="footer-copyright">
+              Designed & Built with React & Passion
             </p>
           </div>
         </div>

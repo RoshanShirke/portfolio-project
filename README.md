@@ -161,6 +161,6 @@ MONGO_URI=your_mongodb_connection_string
 
 ## ⭐ If you like this project
 
-Give it a ⭐ on GitHub and share it!
+Give it a ⭐ on GitHub and Share it!
 
 ---

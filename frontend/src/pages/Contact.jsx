@@ -10,6 +10,7 @@ function Contact() {
 
   const [responseMsg, setResponseMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [msgType, setMsgType] = useState("success"); // success or error
 
   const handleChange = (e) => {
     setFormData({
@@ -21,6 +22,11 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setResponseMsg("");
+
+    // Create an AbortController with 10-second timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     try {
       const res = await fetch("https://portfolio-project-qgov.onrender.com/contact", {
@@ -28,27 +34,51 @@ function Contact() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        signal: controller.signal
       });
+
+      clearTimeout(timeoutId);
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
 
       const data = await res.json();
 
+      setMsgType("success");
       setResponseMsg(data.message || "Message sent successfully 🚀");
 
-      // ✅ Reset form after submission
+      // ✅ Reset form after successful submission
       setFormData({
         name: "",
         email: "",
         message: ""
       });
 
-      // ✅ Auto-clear message after 3 seconds
-      setTimeout(() => setResponseMsg(""), 3000);
+      // ✅ Auto-clear message after 4 seconds
+      setTimeout(() => setResponseMsg(""), 4000);
 
     } catch (error) {
-      console.error(error);
-      setResponseMsg("Error sending message");
-      setTimeout(() => setResponseMsg(""), 3000);
+      clearTimeout(timeoutId);
+      
+      let errorMsg = "Error sending message";
+      
+      if (error.name === "AbortError") {
+        errorMsg = "Request timed out. Please try again or email directly.";
+      } else if (error instanceof TypeError) {
+        errorMsg = "Network error. Please check your connection.";
+      } else {
+        errorMsg = error.message || "Failed to send message";
+      }
+
+      setMsgType("error");
+      setResponseMsg(errorMsg);
+      
+      // ✅ Auto-clear error message after 5 seconds
+      setTimeout(() => setResponseMsg(""), 5000);
+      
+      console.error("Contact form error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -70,50 +100,65 @@ function Contact() {
             type="text"
             name="name"
             placeholder="Your Name"
-            value={formData.name}              // ✅ controlled input
+            value={formData.name}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
 
           <input
             type="email"
             name="email"
             placeholder="Your Email"
-            value={formData.email}             // ✅ controlled input
+            value={formData.email}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
 
           <textarea
             name="message"
             placeholder="Your Message"
             rows="5"
-            value={formData.message}           // ✅ controlled input
+            value={formData.message}
             onChange={handleChange}
             required
+            disabled={isLoading}
           ></textarea>
 
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Sending..." : "Send Message"}
+          <button type="submit" disabled={isLoading} className={isLoading ? "loading" : ""}>
+            {isLoading ? "⏳ Sending..." : "📧 Send Message"}
           </button>
         </form>
 
         {responseMsg && (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            style={{
-              marginTop: "15px",
-              padding: "10px 15px",
-              borderRadius: "8px",
-              backgroundColor: responseMsg.includes("Error") ? "#dc2626" : "#10b981",
-              color: "white"
-            }}
+            className={`response-message ${msgType}`}
           >
             {responseMsg}
-          </motion.p>
+          </motion.div>
         )}
+
+        {/* Email Fallback */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="contact-fallback"
+        >
+          <p className="fallback-text">
+            Having trouble sending? You can also reach me directly at:
+          </p>
+          <a 
+            href="mailto:roshanshirke6735@gmail.com" 
+            className="fallback-email"
+          >
+            📧 roshanshirke6735@gmail.com
+          </a>
+        </motion.div>
       </motion.div>
 
     </section>

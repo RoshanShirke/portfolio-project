@@ -53,6 +53,45 @@ function Projects() {
 
         </div>
 
+        <div className="project-card">
+
+          <h2>LoanTrackr — Smart Loan Management</h2>
+
+          <p>
+            A full-stack loan tracking web app to manage multiple loans across lending apps. Features real-time analytics, auto EMI calculation, and smart app comparisons.
+          </p>
+
+          <p>
+            <strong>Impact:</strong> Helps users manage debt efficiently by tracking EMIs, finding the best loan deals, and providing a single dashboard for all financial liabilities.
+          </p>
+
+          <p>
+            <strong>Tech:</strong> React, Node.js, Express, SQLite, JWT, Recharts
+          </p>
+
+          {/* 🔥 Buttons with working links */}
+          <div className="project-buttons">
+            <button
+              className="btn-primary"
+              onClick={() =>
+                window.open("https://github.com/RoshanShirke/loan-trackr", "_blank")
+              }
+            >
+              View Code
+            </button>
+
+            <button
+              className="btn-secondary"
+              onClick={() =>
+                window.open("https://loan-trackr.onrender.com", "_blank")
+              }
+            >
+              Live Demo
+            </button>
+          </div>
+
+        </div>
+
       </motion.div>
 
     </section>
